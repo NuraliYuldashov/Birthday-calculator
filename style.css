@@ -1,0 +1,92 @@
+* {padding: 0; margin: 0; box-sizing: border-box;}
+
+:root {
+    --primary-light: #8abdff;
+    --primary: #6d5dfc;
+    --primary-dark: #5b0eeb;
+    --white: #FFFFFF;
+    --greyLight-1: #E4EBF5;
+    --greyLight-2: #c8d0e7;
+    --greyLight-3: #bec8e4;
+    --greyDark: #9baacf;
+  }
+
+body {
+    background: var(--greyLight-1);
+    width: 100vw;
+    min-height: 100vh;
+}
+.wrapper{
+    padding: 10px;
+    width:350px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    width: 220px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    padding: 0 15px 0 20px;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2), inset -0.2rem -0.2rem 0.5rem var(--white);
+    background: none;
+    font-family: inherit;
+    color: var(--greyDark);
+}
+/* ========================================================== */
+.check {
+    float: right;
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-light), inset -0.2rem -0.2rem 1rem var(--primary-dark), 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+    color: var(--greyLight-1);
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  .check:hover {
+    color: var(--white);
+  }
+  .check:active {
+    box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-dark), inset -0.2rem -0.2rem 1rem var(--primary-light);
+  }
+/* ============================================================ */
+
+.age_information {
+    margin-top: 10px;
+    width: 330px;
+    height: inherit;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.3em;
+    padding: 10px;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2), inset -0.2rem -0.2rem 0.5rem var(--white);
+    background: none;
+    font-family: inherit;
+    color: var(--greyDark);
+}
+/* =========== SUMMARY ============== */
+.answer {
+    margin-top: 10px;
+    /* display: flex;
+    flex-direction: column; */
+    border: none;
+    width: 330px;
+    height: 100px;
+    border-radius: 10px;
+    font-size: 1.3em;
+    padding: 10px;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2), inset -0.2rem -0.2rem 0.5rem var(--white);
+    background: none;
+    font-family: inherit;
+    color: var(--greyDark);
+}
+h4 {
+    margin-left: 30%;
+    line-height: 30px;
+}
