@@ -17,17 +17,48 @@
         <div class="calendarmain">
             <input type="date" name="bth_date" class="date">
             <!-- <input type="today" name="local_date" class="local_date"> -->
-            <button class="check">Check</button>
+            <button class="check" onclick="calculateBirthday()">Check</button>
             <div class="age_information">
-                <div class="age">Your Age is: </div>
-                <div class="next_birthday">Next Birthday: </div>
+                <div class="age1">
+                    <span>Your Age</span>
+                    <div class="age"></div>
+                </div>
+                <div class="next_birthday1">
+                    <span>Next Birthday</span>
+                    <div class="next_birthday"></div>
+                </div>
             </div>
         </div>
         <div class="answer">
             <h4>Summary</h4>
-            <span id="age">Years: </span>
-            <span id="month">Month: </span>
-            <span id="week">Week: </span>
+            <div id="answer">
+                <div id="age1">
+                    <span>Year</span>
+                    <div id="age"></div>
+                </div>
+                <div id="month1">
+                    <span>Month</span>
+                    <div id="month"></div>
+                </div>
+                <div id="week1">
+                    <span>Week</span>
+                    <div id="week"></div>
+                </div>
+
+                <div id="day1">
+                    <span>Day</span>
+                    <div id="day"></div>
+                </div>
+                <div id="hour1">
+                    <span>Hour</span>
+                    <div id="hour"></div>
+                </div>
+                <div id="minute1">
+                    <span>Minute</span>
+                    <div id="minute"></div>
+                </div>
+
+            </div>
         </div>
     </div>
 
