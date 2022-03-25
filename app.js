@@ -2,7 +2,6 @@
 
 
 const check = document.querySelector('.check'),
-next = document.querySelector('.next_birthday'),
 consWeek = document.querySelector('#week'),
 consMonth = document.querySelector('#month'),
 age = document.querySelector('#age'),
@@ -104,51 +103,4 @@ check.onclick = () => {
 // var currentYear = dateNow.getFullYear()
 
 // var today = `${currentMon}-${currentDay}-${currentYear}`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// document.querySelector('.check').onclick = ()=>{
-//     let dateB = document.querySelector('.date')
-//     let dates = dateB.value.split('-')
-//     let year = dates[0]
-//     let day = dates[2]
-//     let mon = dates[1]
-//     function ageyear () {
-//       let age = currentYear - year
-//       let month = +mon - currentMon
-//       let mo = 12
-//       mo = mo - month
-//       console.log(mo)
-//         if (currentMon <= mon) {
-//             age = age - 1
-//         }
-//         console.log(age + ' Yosh ' + mo +  ' Oylik ')
-//     }
-//     ageyear()
-// }
-
-
-// var dateNow = new Date
-// var currentDay = dateNow.getDate()
-// var currentMon = dateNow.getMonth() + 1
-// var currentYear = dateNow.getFullYear()
-
-// var today = `${currentMon}-${currentDay}-${currentYear}`
-
 
