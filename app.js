@@ -107,23 +107,37 @@ const calcAge = ()=>{
         // next.textContent = 12 + ' Month ' + 0 + ' Day '
         ageMonth = 12 
         nextBirthday = 0
-    }
-    if(current.month == 1 || current.month == 3 || current.month == 5 || current.month == 7 || current.month == 8 || current.month == 10 || current.month == 12) {
-        ageMonth = 11 - ageMonth 
-        var nextBirthday = 31 - ageDay
         
-        // return( month, nextBirthday)
     }
-    if(current.month == 2) {
-        ageMonth = 11 - ageMonth 
-    var nextBirthday = 28 - ageDay
-    // return( month, nextBirthday)
+    else{
+        if(current.month == 1 || current.month == 3 || current.month == 5 || current.month == 7 || current.month == 8 || current.month == 10 || current.month == 12) {
+            ageMonth = 11 - ageMonth 
+            var nextBirthday = 31 - ageDay
+            
+            if (nextBirthday == 31) {
+                ageMonth++
+                nextBirthday = 0
+            }else{nextBirthday = nextBirthday}
+        }
+        if(current.month == 2) {
+            ageMonth = 11 - ageMonth 
+        var nextBirthday = 28 - ageDay
+        
+            if (nextBirthday == 28) {
+                ageMonth++
+                nextBirthday = 0
+            }else{nextBirthday = nextBirthday}
+        }
+        if(current.month == 4 || current.month == 6 ||current.month == 9 || current.month == 11) {
+            ageMonth = 11 - ageMonth 
+        var nextBirthday = 30 - ageDay
+        if (nextBirthday == 30) {
+            ageMonth++
+            nextBirthday = 0
+        }else{nextBirthday = nextBirthday}
+        }
     }
-    if(current.month == 4 || current.month == 6 ||current.month == 9 || current.month == 11) {
-        ageMonth = 11 - ageMonth 
-    var nextBirthday = 30 - ageDay
-    // return( month, nextBirthday)     // return qo'ymaslik kerak ekan
-    }
+
     next.textContent = ''
     next.textContent = ageMonth + ' Month ' + nextBirthday + ' Day '
 }
