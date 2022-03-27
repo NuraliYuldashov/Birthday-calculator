@@ -9,7 +9,7 @@ consMonth = document.querySelector('#month'),
 age = document.querySelector('#age'),
 next = document.querySelector('.next_birthday'),
 yourAge = document.querySelector('.age')
-var fullage = {}
+
 
 
 // * Calculate birth day button click
@@ -20,6 +20,7 @@ var calculateBirthday = ()=>{
     getCurrentDate()
     getBirthDate()
 
+    
     calcAge()
     summary()
 }
@@ -29,12 +30,12 @@ var calculateBirthday = ()=>{
 const getBirthDate = ()=>{
     let inDate = document.querySelector('.date').value
     if(inDate==null || inDate==''){
-        yourAge.innerHTML = "Choose a date please!";  
+        yourAge.textContent = "Choose a date please!";  
         return false; 
       }
     date = new Date(inDate)
     let birthDate = {}
-
+    //   console.log(birthDate)
     birthDate.year = date.getYear()
     birthDate.mon = date.getMonth() + 1
     birthDate.day = date.getDate()
@@ -49,7 +50,7 @@ function getCurrentDate() {
         cY = d.getYear(),
         cD = d.getDate(),
         cM = d.getMonth() + 1
-        D = { year: cY, date: cD, month: cM }
+        const D = { year: cY, date: cD, month: cM }
     return D
 }
 
@@ -59,69 +60,82 @@ const calcAge = ()=>{
     let birthday = getBirthDate()
     let current = getCurrentDate()
     
-
     //  Calculate Age
-    let ageUser = current.year - birthday.year
+    var ageUser = current.year - birthday.year
     
     // Calculate Month
     if (current.month >= birthday.mon) {
-    var monthAge = current.month - birthday.mon
+        var ageMonth = current.month - birthday.mon
     }
     else {
         ageUser-- 
-        var monthAge = 12 + current.month - birthday.mon
+        var ageMonth = 12 + current.month - birthday.mon
     }
     
     //  Calculate Day
-    if (current.month == birthday.mon && current.date == birthday.day) {     // Buni boshqacha yozish mumkin 
-        next.textContent = 'Happy Birthday 🥳🥳'
-        return
-    }
-
+    
     if (current.date >= birthday.day) {
-        var ageday = current.date - birthday.day
+        var ageDay = current.date - birthday.day
     }
-
+    
     else{
-        if (monthAge == 0) {
-            monthAge = 12;
+        if (ageMonth == 0) {
+            ageMonth = 12;
             ageUser--;
-          }
+        }
         if(birthday.mon == 1 || birthday.mon == 3 || birthday.mon == 5 || birthday.mon == 7 || birthday.mon == 8 || birthday.mon == 10 || birthday.mon == 12) {
-            monthAge--
-            var ageday = 31 - birthday.day + current.date
+            ageMonth--
+            var ageDay = 31 - birthday.day + current.date
         }
         if(birthday.mon == 2) {
-            monthAge--
-            var ageday = 28 - birthday.day + current.date                   // ! Shu yerda bir xatolik bor yana if yozish kerak
+            ageMonth--
+            var ageDay = 28 - birthday.day + current.date     
+            ageDay = ageDay >= 28 ? ageDay - 28 && ageMonth++ : ageDay = ageDay
+
         }
         if(birthday.mon == 4 || birthday.mon == 6 || birthday.mon == 9 || birthday.mon == 11) {
-            monthAge--
-        var ageday = 30 - birthday.day + current.date
+            ageMonth--
+            var ageDay = 30 - birthday.day + current.date
+            ageDay = ageDay >= 30 ? ageDay - 30 && ageMonth++ : ageDay = ageDay
         }
     }
-
-    // * Group User Age
-        fullage = {
-            years: ageUser,
-            months: monthAge,
-            days: ageday
-        }
+    yourAge.textContent = ''
+    yourAge.textContent = yourAge.textContent + ageUser + " Year " + ageMonth + ' Month ' + ageDay + ' Day'
     
-    yourAge.textContent = yourAge.textContent + fullage.years + " Year " + fullage.months + ' Month ' + fullage.days + ' Day'
+    // * Calculate Next Birthday
+    if (current.month == birthday.mon && current.date == birthday.day) {     // Buni boshqacha yozish mumkin 
+        // next.textContent = 12 + ' Month ' + 0 + ' Day '
+        ageMonth = 12 
+        nextBirthday = 0
+    }
+    if(current.month == 1 || current.month == 3 || current.month == 5 || current.month == 7 || current.month == 8 || current.month == 10 || current.month == 12) {
+        ageMonth = 11 - ageMonth 
+        var nextBirthday = 31 - ageDay
+        
+        // return( month, nextBirthday)
+    }
+    if(current.month == 2) {
+        ageMonth = 11 - ageMonth 
+    var nextBirthday = 28 - ageDay
+    // return( month, nextBirthday)
+    }
+    if(current.month == 4 || current.month == 6 ||current.month == 9 || current.month == 11) {
+        ageMonth = 11 - ageMonth 
+    var nextBirthday = 30 - ageDay
+    // return( month, nextBirthday)     // return qo'ymaslik kerak ekan
+    }
+    next.textContent = ''
+    next.textContent = ageMonth + ' Month ' + nextBirthday + ' Day '
 }
-
-
-
 // * Calculate Summary Month, Week, Day, Hour, Minut
 
 const summary = ()=>{
     let birthday = getBirthDate().full
     let current = new Date()
-     
+    
     //calculate the difference of dates
     let totalMillisecond = current.valueOf() - birthday.valueOf();
-
+    
     let totalYear = Math.floor(totalMillisecond / 31557600000)
     let totalMonths = Math.floor(totalMillisecond / 2629746000)
     let totalWeeks = Math.floor(totalMillisecond / 604800000)
@@ -135,9 +149,8 @@ const summary = ()=>{
     document.getElementById('day').textContent = totalDays
     document.getElementById('hour').textContent = totalHours
     document.getElementById('minute').textContent = totalMinutes
-
+    
 }
-
 
 
 
