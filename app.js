@@ -8,7 +8,9 @@ consWeek = document.querySelector('#week'),
 consMonth = document.querySelector('#month'),
 age = document.querySelector('#age'),
 next = document.querySelector('.next_birthday'),
-yourAge = document.querySelector('.age')
+yourAge = document.querySelector('.age'),
+famous = document.querySelector('.section'),
+inputD = document.querySelector('.date')
 
 
 
@@ -23,12 +25,15 @@ var calculateBirthday = ()=>{
     
     calcAge()
     summary()
+
+    section()
+
 }
 
 // * Get birthday from User
 
 const getBirthDate = ()=>{
-    let inDate = document.querySelector('.date').value
+    let inDate = inputD.value
     if(inDate==null || inDate==''){
         yourAge.textContent = "Choose a date please!";  
         return false; 
@@ -166,91 +171,55 @@ const summary = ()=>{
     
 }
 
+// ?===================================================  Famous Section  =========================================================
 
 
 
-  /*  check.onclick = () => {
-    let cDate = getDate(),
-    birthDate = document.querySelector('.date'),
-        dateB = birthDate.value.split('-'),
-        year = dateB[0],
-        mon = dateB[1],
-        day = dateB[2]
+function section () {
+    let inp = new Date(inputD.value).getMonth()+1
+    famous.innerHTML = ''
 
-    function ageYear() {
-        var ageYear = cDate.year - year, // Yoshi
-            month = mon - cDate.month,
-            ageMonth = 12 - month,       // oylik
-            ageDay = cDate.date - day    // kunlik
-
-        if (cDate.month <= mon) {
-            ageYear = ageYear - 1
-        }
-        if ((ageMonth == 0) && (ageDay == 0)) {
-            next.textContent = next.textContent + ageYear + " Years old. Happy Birthday!!"
-            return
-        }
-
-       
-        let months = ageYear * 12 + ageMonth,
-            totalDay = (ageYear * 365.25) + (ageMonth * 30.43) + ageDay,   // Umumiy kuni taxminan chiqdi
-            week = totalDay / 7,
-            totalWeek = Math.floor(week)
-
-            console.log(totalDay)
-        if(cDate.month == mon && cDate.date == day) {     // Buni boshqacha yozish mumkin 
-            next.textContent = next.textContent + month + ' shuncha oy va ' + nextBirthday + ' kun qoldi'
-            return
-        }
-        if(cDate.month == 1 || cDate.month == 3 || cDate.month == 5 || cDate.month == 7 || cDate.month == 8 || cDate.month == 10 || cDate.month == 12) {
-            month = month - 1
-            var nextBirthday = 31 - ageDay
-            
-            // return( month, nextBirthday)
-        }
-        if(cDate.month == 2) {
-            month - 1
-        var nextBirthday = 28 - ageDay
-        // return( month, nextBirthday)
-        }
-        if(cDate.month == 4 || cDate.month == 6 ||cDate.month == 9 || cDate.month == 11) {
-            month - 1
-        var nextBirthday = 30 - ageDay
-        // return( month, nextBirthday)     // return qo'ymaslik kerak ekan
-        }
-        yourAge.textContent = yourAge.textContent + ageYear + ' Yosh ' + ageMonth + ' oy ' + ageDay + ' kunlik'
-        age.textContent = age.textContent + ageYear
-        consMonth.textContent = consMonth.textContent + months
-        consWeek.textContent = consWeek.textContent + totalWeek
-        next.textContent = next.textContent + month + ' Oy ' + nextBirthday + ' kun qoldi'
-        
-
-    }
-    ageYear()
+    fetch ('data.json') 
     
+        .then (json => json.json())
+        .then (arra => generateFamous(arra, inp))
+}
+
+function generateFamous (data, mon) {
+    const filteredData = data.filter(item => item.mon == mon) 
     
-    
- }  */
+    filteredData.forEach(e => {
+        console.log(e.name)
+        const card = `
+            <div class="card MyCard">
+                <img src="${e.img == null ? emptyImageURL : e.img}" class="card-img-top" alt="no found">
+                <div class="card-body">
+                <h5 class="card-title">${e.name}</h5>
+                <span class="span"> ${e.date} </span>
+                    <p class="card-text">${e.desc}</p>
+                </div>
+            </div>
+            `
+        famous.innerHTML += card
+    });
+}
+
+//?=============================  Day and Dark mode section  ===============================================
 
 
 
-        
-        
+// Get the root element
+// var r = document.styleSheets[1].cssRules[1].style[4]
+// console.log(r)
 
 
+// document.documentElement.style.setProperty("--primary-dark", "#5526ad");
+// document.documentElement.style.setProperty("--primary", "#342c79");
+// document.documentElement.style.setProperty("--primary-light", "#2b4567");
+// document.documentElement.style.setProperty("--greyLight-1", "#14171e");
+// document.documentElement.style.setProperty("--greyDark", "#3e4c6e");
+// document.documentElement.style.setProperty("--greyLight-2", "#222");
+// document.documentElement.style.setProperty("--white", "#444");
 
-// check.onkeypress = (event) => {
-//     if (event.code === 'Enter') {
-//         ageyear()
-//         return
-//     }
-//     input.focus()
-// }
 
-// var dateNow = new Date
-// var currentDay = dateNow.getDate()
-// var currentMon = dateNow.getMonth() + 1
-// var currentYear = dateNow.getFullYear()
-
-// var today = `${currentMon}-${currentDay}-${currentYear}`
 
